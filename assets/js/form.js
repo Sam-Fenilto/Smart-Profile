@@ -21,7 +21,6 @@ function main() {
     var file = $("#file").val();
     var active = document.getElementById("active");
     var cb = document.getElementsByName("location");
-    console.log(empStr(title, desc));
     $("#submit").css("display","block");
     $("#edit-div").css("display","none");
     //validation
@@ -30,10 +29,14 @@ function main() {
         $("#warn-text").text("Kindly fill the title fields.");
         return false;
     }
-    if(desc == ""){
+    else if(desc == ""){
         $("#alert").slideDown();
         $("#warn-text").text("Kindly fill the description fields.");
         return false;
+    }
+    else if(strCheck(title, desc) == false){
+        $("#alert").slideDown();
+        $("#warn-text").text("Empty spaces or Characters or Numbers are not allowed");
     }
     else if(checkbox(cb) == false){
         $("#alert").slideDown();
@@ -48,6 +51,10 @@ function main() {
     else if(lengthCheck() == false){
         $("#alert").slideDown();
         $("#warn-text").text("The length of title should be 30 or The length of description should be 150.");
+    }
+    else if(file == ""){
+         $("#alert").slideDown();
+        $("#warn-text").text("Kindly insert the file");
     }
     else{
         titleArr.push(title);
@@ -85,17 +92,19 @@ function main() {
 function dropDisable(divCount){
     if(divCount > 0){
         $("#statusdrop, #interestdrop, #navsearch").prop("disabled", false);
+        $("#norec").hide();
     }else{
         $("#statusdrop, #interestdrop, #navsearch").prop("disabled", true);
+        $("#norec").show();
     }
     return;
 }
 
 //empty and string or number validations
-function empStr(title, desc) {
+function strCheck(title, desc) {
     let result = false;
     let str = /^[A-Za-z]+$/;
-    if (title != "" && desc != "" && title.match(str) && desc.match(str)) {
+    if (title.match(str) && desc.match(str)) {
         result = true;
         
     } else {
@@ -206,13 +215,19 @@ inp.addEventListener('change', function(e){
 
 function realSearch() {
     let inp = document.getElementById("navsearch").value.toLowerCase();
-    console.log(inp.length)
+    let coun = 0;
     if(inp.length == 0){
             $(".content-div").show();
        }else{
             for(let i = 1; i <= divCount; i++){
                 if($(`.title${i}`).text().indexOf(inp) > -1){
                     $(`.title${i}`).parent("div").parent("div").parent("div").show();
+                    console.log($(`.title${i}`).parent("div").parent("div").parent("div"));
+                    coun+= $(`.title${i}`).parent("div").parent("div").parent("div").length;
+                    if(coun <= 0 || coun == null){
+                        $("#norec").show();
+                    }
+                    console.log(coun);
                 }
                 else{
                     $(`.title${i}`).parent("div").parent("div").parent("div").hide();

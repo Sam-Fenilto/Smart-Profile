@@ -130,3 +130,28 @@ a {
     flex-direction: column;
     justify-content: center;
 }
+
+
+
+
+
+
+
+
+
+/*no rec*/
+.no-rec{
+    width: 100%;
+    min-height: 63vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.no-rec img{
+    width: 30rem;
+    height: 20rem;
+}
+.no-rec h2{
+    color: var(--green-color);
+}

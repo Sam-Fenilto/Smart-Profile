@@ -118,12 +118,20 @@ $(document).ready(function(){
     let file = $("#file").val();
     let active = document.getElementById("active");
     let cb = document.getElementsByName("location");
-    console.log(empStr(title, desc));
     //validation
-    if(empStr(title, desc) == false){
+    if(title == ""){
         $("#alert").slideDown();
-        $("#warn-text").text("Kindly fill the empty fields.");
-        $("#form").fadeOut();
+        $("#warn-text").text("Kindly fill the title fields.");
+        return false;
+    }
+    else if(desc == ""){
+        $("#alert").slideDown();
+        $("#warn-text").text("Kindly fill the description fields.");
+        return false;
+    }
+    else if(strCheck(title, desc) == false){
+        $("#alert").slideDown();
+        $("#warn-text").text("Empty spaces or Characters or Numbers are not allowed");
     }
     else if(checkbox(cb) == false){
         $("#alert").slideDown();
