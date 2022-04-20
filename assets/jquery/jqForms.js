@@ -9,6 +9,7 @@ $(document).ready(function () {
         $("#form").fadeOut();
         $("#submit").css("display","block");
         $("#edit-div").css("display","none");
+         $("#alert").slideUp();
         editId.pop();
         res();
     });
@@ -173,6 +174,7 @@ $(document).ready(function(){
             $("#form").css("display", "none");
             $("#submit").css("display","block");
             $("#edit-div").css("display","none");
+            $("#alert").slideUp();
             res();
         }   
     })

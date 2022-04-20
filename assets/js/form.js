@@ -78,6 +78,7 @@ function main() {
             
             console.log(imgData[0])
             $("#form").css("display", "none");
+            $("#alert").slideUp();
             res();
     }
     
